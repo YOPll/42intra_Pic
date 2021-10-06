@@ -1,4 +1,5 @@
 import discord
+import os
 from discord import client
 from discord.embeds import Embed
 import requests
@@ -28,30 +29,32 @@ async def intra42(ctx):
     content = ctx.message.content
     author = ctx.message.author.id
     arr = content.split(" ", 1)
-    imgex = ".jpg"
     URL = "https://cdn.intra.42.fr/users/large_"
+    imgex = ".jpg"
     x = len(content.split())
     if x > 1:
         y = 1
     else:
         y = 0
     msg = arr[y].strip(" ")
-    r = requests.get(URL+msg+imgex)
     link = URL+msg+imgex
+    r = requests.get(link)
     if r.status_code  == 200:
         embed=discord.Embed()
         embed.set_image(url=link)
         await ctx.send(embed=embed)
     elif y == 0:
-        yopi = discord.Embed(title = 'Syntax_error', description = f'Sorry <@{author}> Please enter username, Example : *intra42 zyacoubi',color = ctx.author.color)
+        yopi = discord.Embed(title = 'Syntax_error', description = f'Sorry <@{author}> Please enter username, Example : ***intra42 zyacoubi**',color = ctx.author.color)
         await ctx.send(embed = yopi)
     elif r.status_code == 404:
-        yopi = discord.Embed(title = 'User_Not_Found', description = f'Sorry <@{author}> we couldn\'t find {msg} picture.',color = ctx.author.color)
+        yopi = discord.Embed(title = 'User_Not_Found', description = f'Sorry <@{author}> we couldn\'t find **{msg}** picture.',color = ctx.author.color)
         await ctx.send(embed = yopi)
 
-@bot.command()
-async def whomadeu(ctx):
-        yopi = discord.Embed(title = 'Syntax_error', description = f'Sorry <@{author}> Please enter username, Example : *intra42 zyacoubi',color = ctx.author.color)
-    await ctx.send(f'<@254700247471751171>')
+
+@bot.group()
+async def owner(ctx):
+        yopi = discord.Embed(title = 'Owned by YOPI', description = f'Check out my [twitter](https://twitter.com/YONINUX) and [github](https://github.com/YOPll) ',color = discord.Colour.teal())
+        await ctx.send(embed = yopi)
 
 bot.run(creds.token)
+
