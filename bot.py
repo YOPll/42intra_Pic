@@ -20,7 +20,7 @@ async def on_ready():
     print(bot.user.id)
     print('Future is loading ...')
     print('----------------------------------------------------------')
-    await bot.change_presence(status=discord.Status.online,activity=discord.Game(name='*help || YOPI'))
+    await bot.change_presence(status=discord.Status.online,activity=discord.Game(name='*owner || YOPI'))
 
 
 
@@ -57,4 +57,3 @@ async def owner(ctx):
         await ctx.send(embed = yopi)
 
 bot.run(creds.token)
-
