@@ -1,5 +1,4 @@
 import discord
-import os
 from discord import client
 from discord.embeds import Embed
 import requests
@@ -8,9 +7,6 @@ from discord.ext import commands
 
 
 bot = commands.Bot(command_prefix='*', description='Your Description')
-bot.remove_command('help')
-
-
 
 
 @bot.event
@@ -21,7 +17,6 @@ async def on_ready():
     print('Future is loading ...')
     print('----------------------------------------------------------')
     await bot.change_presence(status=discord.Status.online,activity=discord.Game(name='*owner || YOPI'))
-
 
 
 @bot.command()
@@ -37,11 +32,10 @@ async def intra42(ctx):
     else:
         y = 0
     msg = arr[y].strip(" ")
-    link = URL+msg+imgex
-    r = requests.get(link)
+    r = requests.get(URL+msg+imgex)
     if r.status_code  == 200:
         embed=discord.Embed()
-        embed.set_image(url=link)
+        embed.set_image(url=URL+msg+imgex)
         await ctx.send(embed=embed)
     elif y == 0:
         yopi = discord.Embed(title = 'Syntax_error', description = f'Sorry <@{author}> Please enter username, Example : ***intra42 zyacoubi**',color = ctx.author.color)
