@@ -27,10 +27,7 @@ async def intra42(ctx):
     URL = "https://cdn.intra.42.fr/users/large_"
     imgex = ".jpg"
     x = len(content.split())
-    if x > 1:
-        y = 1
-    else:
-        y = 0
+    y = 1 if (x > 1) else 0
     msg = arr[y].strip(" ")
     r = requests.get(URL+msg+imgex)
     if r.status_code  == 200:
