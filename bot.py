@@ -36,6 +36,7 @@ async def intra42(ctx):
     if r.status_code  == 200:
         embed=discord.Embed()
         embed.set_image(url=URL+msg+imgex)
+        embed.set_footer(text=f"Requested By {ctx.author}",icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
     elif y == 0:
         yopi = discord.Embed(title = 'Syntax_error', description = f'Sorry <@{author}> Please enter username, Example : ***intra42 zyacoubi**',color = ctx.author.color)
